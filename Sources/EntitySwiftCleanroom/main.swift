@@ -95,7 +95,9 @@ let kit=URL(fileURLWithPath:FileManager.default.currentDirectoryPath).appendingP
 let manifest=obj(try load(kit+"/vectors/VECTOR_MANIFEST.json"));let vectors=arr(manifest["vectors"]);var rows:[[String:Any]]=[];var passed=0
 for item in vectors {
     let v=obj(item);let result=try verifyBundle(obj(try load(kit+"/vectors/"+s(v,"file"))));let exp=obj(v["expected"])
-    let ok=(result["overall_valid"] as? Bool)==(exp["overall_valid"] as? Bool) && String(data:try jsonData(result["error_codes"]!),encoding:.utf8)==String(data:try jsonData(exp["error_codes"]!),encoding:.utf8)
+    let actualErrors = try jsonData(result["error_codes"]!)
+    let expectedErrors = try jsonData(exp["error_codes"]!)
+    let ok=(result["overall_valid"] as? Bool)==(exp["overall_valid"] as? Bool) && actualErrors == expectedErrors
     if ok { passed += 1 };rows.append(["name":s(v,"name"),"ok":ok,"result_sha256":try resultHash(result),"result":result])
 }
 let recovery=try verifyRecovery(kit+"/vectors/recovery",kit+"/vectors/test_inputs/recovery_key.hex")
