@@ -26,15 +26,24 @@ jobs:
               if actual != expected: raise SystemExit(f'checksum mismatch: {rel}')
           print('sealed conformance kit: SHA256SUMS PASS')
           PY
+      - name: Fetch sealed v3.2 adoption kit
+        run: |
+          mkdir -p adoption-conformance-kit
+          curl -fsSL -o adoption-conformance-kit/ENTITY_V3_2_ADOPTION_CLEANROOM_KIT.min.json https://raw.githubusercontent.com/blackmore-technology-group/ENTITY/ee3587a6e65c2565eaab2e815e85415ab705ea47/protocol/v3/ENTITY_V3_2_ADOPTION_CLEANROOM_KIT.min.json
+          echo '44e7a00f910c89aced3b3c1b5e9cba486809ca313e9bfb4b7bc9266095c10c14  adoption-conformance-kit/ENTITY_V3_2_ADOPTION_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
       - name: Toolchain
         run: swift --version
-      - name: Compile and run campaign
+      - name: Compile and run campaigns
         shell: bash
         run: |
           set -o pipefail
           mkdir -p evidence-ci
           swift run -c release EntitySwiftCleanroom test | tee evidence-ci/cleanroom-report.json
-          shasum -a 256 evidence-ci/cleanroom-report.json > evidence-ci/cleanroom-report.sha256
+          swift run -c release AdoptionV32 | tee evidence-ci/adoption-v3.2-report.json
+          grep -q '"vectors_passed" : 16' evidence-ci/adoption-v3.2-report.json || grep -q '"vectors_passed": 16' evidence-ci/adoption-v3.2-report.json
+          grep -q '1eb59e09ab08da86bfd8584df4a64ba331f7bbbce3d236b9b94f351606c90e18' evidence-ci/adoption-v3.2-report.json
+          grep -q '"overall_valid" : true' evidence-ci/adoption-v3.2-report.json || grep -q '"overall_valid": true' evidence-ci/adoption-v3.2-report.json
+          shasum -a 256 evidence-ci/cleanroom-report.json evidence-ci/adoption-v3.2-report.json > evidence-ci/reports.sha256
           git rev-parse HEAD > evidence-ci/commit.txt
       - uses: actions/upload-artifact@v4
         with:
