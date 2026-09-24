@@ -2,7 +2,7 @@ import Foundation
 import Crypto
 
 let kitPath = "reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json"
-let kitSHA = "e0d6ba26baa405557bc2990e39d3022ebb8cda00ae797fab0100773cf304a6fd"
+let kitSHA = "f8b39ee01fb7346f33a57530e925b545d2bf9a770c7ec60724e28a4971d55a46"
 let expected = "82bd1f1fb328edd37a26d8ea60ede5a599c7d9af5027bffd73b9e52843b5a51d"
 let primitives = ["ENTITY","AUTHORITY","RIGHT","EVENT","VALUE"]
 let states:Set<String> = ["OBSERVED","ASSERTED","INFERRED","ATTESTED","EXTERNALLY_VERIFIED","ADJUDICATED","DISPUTED","REVOKED","UNKNOWN"]
