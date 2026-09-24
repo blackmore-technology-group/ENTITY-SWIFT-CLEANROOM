@@ -19,6 +19,10 @@ let package = Package(
         .executableTarget(
             name: "RealityV33",
             dependencies: [.product(name: "Crypto", package: "swift-crypto")]
+        ),
+        .executableTarget(
+            name: "PassportV34",
+            dependencies: [.product(name: "Crypto", package: "swift-crypto")]
         )
     ]
 )
