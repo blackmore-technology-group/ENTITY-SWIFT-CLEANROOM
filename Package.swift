@@ -11,6 +11,10 @@ let package = Package(
         .executableTarget(
             name: "EntitySwiftCleanroom",
             dependencies: [.product(name: "Crypto", package: "swift-crypto")]
+        ),
+        .executableTarget(
+            name: "AdoptionV32",
+            dependencies: [.product(name: "Crypto", package: "swift-crypto")]
         )
     ]
 )
