@@ -101,6 +101,7 @@ for item in vectors {
     if ok { passed += 1 };rows.append(["name":s(v,"name"),"ok":ok,"result_sha256":try resultHash(result),"result":result])
 }
 let recovery=try verifyRecovery(kit+"/vectors/recovery",kit+"/vectors/test_inputs/recovery_key.hex")
-let report:[String:Any]=["implementation":"swift","vectors_passed":passed,"vectors_total":vectors.count,"recovery_pass":recovery["overall_valid"] as? Bool ?? false,"golden_root":manifest["valid_transaction_root_sha256"]!,"results":rows,"recovery":recovery]
+let globalV31=try runGlobalV31()
+let report:[String:Any]=["implementation":"swift","vectors_passed":passed,"vectors_total":vectors.count,"recovery_pass":recovery["overall_valid"] as? Bool ?? false,"golden_root":manifest["valid_transaction_root_sha256"]!,"results":rows,"recovery":recovery,"global_v3_1":globalV31]
 let out=try JSONSerialization.data(withJSONObject:report,options:[.prettyPrinted,.sortedKeys,.withoutEscapingSlashes]);print(String(data:out,encoding:.utf8)!)
-if passed != vectors.count || (recovery["overall_valid"] as? Bool) != true { exit(1) }
+if passed != vectors.count || (recovery["overall_valid"] as? Bool) != true || (globalV31["overall_valid"] as? Bool) != true { exit(1) }
