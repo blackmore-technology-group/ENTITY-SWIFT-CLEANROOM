@@ -35,8 +35,8 @@ jobs:
         shell: bash
         run: |
           mkdir -p reality-conformance-kit
-          curl -fsSL -o reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json https://raw.githubusercontent.com/blackmore-technology-group/ENTITY/2529acfdc7cccd824b629945cc196a484515142a/protocol/v3/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json
-          echo 'e0d6ba26baa405557bc2990e39d3022ebb8cda00ae797fab0100773cf304a6fd  reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
+          curl -fsSL -o reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json https://raw.githubusercontent.com/blackmore-technology-group/ENTITY/8d0d60948c584de9bdff665ed034480c08254509/protocol/v3/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json
+          echo 'f8b39ee01fb7346f33a57530e925b545d2bf9a770c7ec60724e28a4971d55a46  reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
       - name: Toolchain
         run: swift --version
       - name: Compile and run campaigns
