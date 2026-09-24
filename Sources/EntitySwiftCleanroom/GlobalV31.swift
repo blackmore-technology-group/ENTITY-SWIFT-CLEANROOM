@@ -36,7 +36,7 @@ func verifyGlobalChecksums(_ root:String)->Bool{
     guard let text=try? String(contentsOfFile:root+"/SHA256SUMS.txt",encoding:.utf8) else{return false}
     for raw in text.replacingOccurrences(of:"\u{feff}",with:"").split(separator:"\n"){
         let line=String(raw);if line.trimmingCharacters(in:.whitespacesAndNewlines).isEmpty{continue}
-        guard let r=line.range(of:"  ") else{return false};let expected=String(line[..<r.lowerBound]);let rel=String(line[r.upperBound...])
+        guard let r=line.range(of:"  ") else{return false};let expected=String(line[..<r.lowerBound]).trimmingCharacters(in:.whitespacesAndNewlines);let rel=String(line[r.upperBound...]).trimmingCharacters(in:.whitespacesAndNewlines)
         guard let data=try? Data(contentsOf:URL(fileURLWithPath:root+"/"+rel)), sha256(data)==expected else{return false}
     }
     return true
