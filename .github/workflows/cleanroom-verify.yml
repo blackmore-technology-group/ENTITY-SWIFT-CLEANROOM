@@ -38,12 +38,10 @@ jobs:
           mkdir -p reality-conformance-kit
           curl -fsSL -o reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json https://raw.githubusercontent.com/blackmore-technology-group/ENTITY/9c79f987207592cb6791e1a8956f23351cdfb2d3/protocol/v3/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json
           echo 'f8b39ee01fb7346f33a57530e925b545d2bf9a770c7ec60724e28a4971d55a46  reality-conformance-kit/ENTITY_V3_3_REALITY_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
-      - name: Fetch sealed v3.4 global passport kit
+      - name: Verify sealed v3.4.1 global passport kit
         shell: bash
         run: |
-          mkdir -p passport-conformance-kit
-          curl -fsSL -o passport-conformance-kit/ENTITY_V3_4_GLOBAL_PASSPORT_CLEANROOM_KIT.min.json https://raw.githubusercontent.com/blackmore-technology-group/ENTITY/c143ccc14def335635e7d0248353167e4956e977/protocol/v3/ENTITY_V3_4_GLOBAL_PASSPORT_CLEANROOM_KIT.min.json
-          echo '5869a3fd0ed6cb9f65bf4b20c3bd64933cad82f4aef05c5809e2e05af921f230  passport-conformance-kit/ENTITY_V3_4_GLOBAL_PASSPORT_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
+          echo 'f95c2b347da97742fed3f20611f0eec2fd3df48694fed9494fb07163c537cfb7  passport-conformance-kit-v341/ENTITY_V3_4_GLOBAL_PASSPORT_CLEANROOM_KIT.min.json' | shasum -a 256 -c -
       - name: Toolchain
         run: swift --version
       - name: Compile and run campaigns
