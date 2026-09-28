@@ -5,8 +5,10 @@ let package = Package(
     name: "EntitySwiftCleanroom",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "entity-swift-cleanroom", targets: ["EntitySwiftCleanroom"]),
-        .executable(name: "entity-passport-v34", targets: ["PassportV34"])
+        .executable(name: "EntitySwiftCleanroom", targets: ["EntitySwiftCleanroom"]),
+        .executable(name: "AdoptionV32", targets: ["AdoptionV32"]),
+        .executable(name: "RealityV33", targets: ["RealityV33"]),
+        .executable(name: "PassportV34", targets: ["PassportV34"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-crypto.git", from: "4.5.1")
