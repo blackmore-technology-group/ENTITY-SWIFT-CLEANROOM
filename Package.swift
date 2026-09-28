@@ -4,6 +4,10 @@ import PackageDescription
 let package = Package(
     name: "EntitySwiftCleanroom",
     platforms: [.macOS(.v13)],
+    products: [
+        .executable(name: "entity-swift-cleanroom", targets: ["EntitySwiftCleanroom"]),
+        .executable(name: "entity-passport-v34", targets: ["PassportV34"])
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-crypto.git", from: "4.5.1")
     ],
