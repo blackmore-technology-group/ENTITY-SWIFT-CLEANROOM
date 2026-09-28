@@ -1,0 +1,20 @@
+name: Registry package smoke
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-smoke:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Describe and build exposed Swift products
+        run: |
+          swift package describe >/dev/null
+          swift build -c release --product EntitySwiftCleanroom
+          swift build -c release --product PassportV34
+          echo 'Swift package discovery smoke: PASS'
