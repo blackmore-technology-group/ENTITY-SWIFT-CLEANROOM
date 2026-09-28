@@ -8,14 +8,22 @@ This repository is structurally ready for normal Swift package discovery:
 - package smoke verifies `swift package describe` and release-builds the exposed products;
 - existing clean-room verification remains green.
 
+## Distribution version boundary
+
+The intended first normal versioned distribution tag for the current qualified campaign is:
+
+`v3.4.2`
+
+That tag identifies the BTG-controlled v3.4.2 Global Passport campaign. It does not rename ENTITY Protocol 1.0 and it does not convert BTG-controlled evidence into independent validation.
+
 ## Remaining external release step
 
 Before submitting to Swift Package Index:
 
-1. choose a semantic-version tag that accurately identifies the exact source/campaign being distributed;
-2. run dependency review, clean-room verification and registry package smoke on that source;
-3. create a new tag rather than moving/reusing historical tags;
-4. verify the tagged repository still passes `swift package dump-package` / package description and release build;
+1. confirm `main` is the exact source/campaign already qualified by dependency review, clean-room verification and registry package smoke;
+2. confirm no existing `v3.4.2` tag exists and never move or rewrite a historical tag;
+3. create `v3.4.2` at that reviewed commit;
+4. verify the tagged repository still passes `swift package dump-package`, package description and release builds for the exposed products;
 5. submit the public Git URL to Swift Package Index.
 
 No Swift Package Index credential needs to be stored in this repository for normal public-package discovery.
